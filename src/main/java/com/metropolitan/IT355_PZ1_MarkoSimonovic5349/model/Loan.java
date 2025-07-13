@@ -1,16 +1,17 @@
 package com.metropolitan.IT355_PZ1_MarkoSimonovic5349.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Loan {
     private Book book;
     private User user;
-    private Date loanDate;
+    private LocalDate loanDate;
+    private LocalDate returnDate;
 
     public Loan() {
     }
 
-    public Loan(Book book, User user, Date loanDate) {
+    public Loan(Book book, User user, LocalDate loanDate) {
         this.book = book;
         this.user = user;
         this.loanDate = loanDate;
@@ -32,12 +33,20 @@ public class Loan {
         this.user = user;
     }
 
-    public Date getLoanDate() {
+    public LocalDate getLoanDate() {
         return loanDate;
     }
 
-    public void setLoanDate(Date loanDate) {
+    public void setLoanDate(LocalDate loanDate) {
         this.loanDate = loanDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
     }
 
     @Override
@@ -46,6 +55,7 @@ public class Loan {
                 "book=" + book +
                 ", user=" + user +
                 ", loanDate=" + loanDate +
+                ", returnDate=" + returnDate +
                 '}';
     }
 }
