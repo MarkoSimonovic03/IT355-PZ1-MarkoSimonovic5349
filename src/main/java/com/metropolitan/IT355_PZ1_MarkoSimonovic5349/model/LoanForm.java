@@ -3,43 +3,33 @@ package com.metropolitan.IT355_PZ1_MarkoSimonovic5349.model;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
-import java.util.Date;
-
 @Component
 @RequestScope
 public class LoanForm {
-    private Book book;
-    private Date loanDate;
+    private String bookName;
+    private String userUsername;
 
     public LoanForm() {
     }
 
-    public LoanForm(Book book, Date loanDate) {
-        this.book = book;
-        this.loanDate = loanDate;
+    public LoanForm(String bookName, String userUsername) {
+        this.bookName = bookName;
+        this.userUsername = userUsername;
     }
 
-    public Book getBook() {
-        return book;
+    public String getBookName() {
+        return bookName;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
 
-    public Date getLoanDate() {
-        return loanDate;
+    public String getUserUsername() {
+        return userUsername;
     }
 
-    public void setLoanDate(Date loanDate) {
-        this.loanDate = loanDate;
-    }
-
-    @Override
-    public String toString() {
-        return "LoanForm{" +
-                "book=" + book +
-                ", loanDate=" + loanDate +
-                '}';
+    public void setUserUsername(String userUsername) {
+        this.userUsername = userUsername;
     }
 }

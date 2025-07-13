@@ -3,10 +3,12 @@ package com.metropolitan.IT355_PZ1_MarkoSimonovic5349.service;
 import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.model.Author;
 import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.model.Book;
 import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.model.Category;
+import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.model.User;
 import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.repository.MemoryBase;
 import jakarta.annotation.PostConstruct;
 
 import java.util.List;
+import java.util.Optional;
 
 public class BookService {
     private final MemoryBase db;
@@ -33,5 +35,9 @@ public class BookService {
 
     public List<Book> getAllBooks(){
         return db.getBookList();
+    }
+
+    public Optional<Book> returnByName(String name){
+        return db.getBookList().stream().filter(b -> b.getName().equals(name)).findFirst();
     }
 }
