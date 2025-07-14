@@ -6,10 +6,12 @@ import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.model.Category;
 import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.model.User;
 import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.repository.MemoryBase;
 import jakarta.annotation.PostConstruct;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class BookService {
     private final MemoryBase db;
 

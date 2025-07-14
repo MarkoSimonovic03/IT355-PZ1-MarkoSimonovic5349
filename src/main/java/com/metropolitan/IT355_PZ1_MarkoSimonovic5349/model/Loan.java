@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class Loan {
     private Book book;
     private User user;
+    private boolean isActive;
     private LocalDate loanDate;
     private LocalDate returnDate;
 
@@ -15,6 +16,7 @@ public class Loan {
         this.book = book;
         this.user = user;
         this.loanDate = loanDate;
+        isActive = true;
     }
 
     public Book getBook() {
@@ -31,6 +33,14 @@ public class Loan {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public LocalDate getLoanDate() {
@@ -54,6 +64,7 @@ public class Loan {
         return "Loan{" +
                 "book=" + book +
                 ", user=" + user +
+                ", isActive=" + isActive +
                 ", loanDate=" + loanDate +
                 ", returnDate=" + returnDate +
                 '}';

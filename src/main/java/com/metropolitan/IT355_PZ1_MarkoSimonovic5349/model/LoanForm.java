@@ -6,30 +6,30 @@ import org.springframework.web.context.annotation.RequestScope;
 @Component
 @RequestScope
 public class LoanForm {
-    private String bookName;
-    private String userUsername;
+    private String name;
+    private String username;
 
     public LoanForm() {
     }
 
-    public LoanForm(String bookName, String userUsername) {
-        this.bookName = bookName;
-        this.userUsername = userUsername;
+    public LoanForm(String name, String username) {
+        this.name = name;
+        this.username = username;
     }
 
-    public String getBookName() {
-        return bookName;
+    public String getName() {
+        return name;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getUserUsername() {
-        return userUsername;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserUsername(String userUsername) {
-        this.userUsername = userUsername;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

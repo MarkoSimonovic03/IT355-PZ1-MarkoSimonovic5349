@@ -2,8 +2,6 @@ package com.metropolitan.IT355_PZ1_MarkoSimonovic5349.controller;
 
 import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.model.SessionUser;
 import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.service.BookService;
-import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.service.LoanService;
-import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

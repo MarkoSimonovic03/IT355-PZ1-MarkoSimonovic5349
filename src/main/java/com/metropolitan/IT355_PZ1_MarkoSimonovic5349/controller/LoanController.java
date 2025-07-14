@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/loans")
 public class LoanController {
     private final BookService bookService;
     private final UserService userService;
@@ -28,10 +27,11 @@ public class LoanController {
         this.sessionUser = sessionUser;
     }
 
-    @GetMapping()
-    public String showLoans(@ModelAttribute Model model) {
+    @GetMapping("/loans")
+    public String showLoans(Model model) {
         if (!sessionUser.isLogged()) return "redirect:/login";
         model.addAttribute("loans", loanService.getLoansByUsername(sessionUser.getUsername()));
+        model.addAttribute("sessionUser", sessionUser);
 
         return "loans";
     }
@@ -39,18 +39,18 @@ public class LoanController {
     @PostMapping("/createLoan")
     public String loanBook(@ModelAttribute LoanForm form, Model model) {
         if (!sessionUser.isLogged()) return "redirect:/login";
-        boolean success = loanService.createLoan(form.getBookName(), form.getUserUsername());
+        boolean success = loanService.createLoan(form.getName(), form.getUsername());
         if(!success) return "redirect:/login";
 
-        return "loans";
+        return "redirect:/loans";
     }
 
     @PostMapping("finishLoan")
     public String returnBook(@ModelAttribute LoanForm form, Model model) {
         if (!sessionUser.isLogged()) return "redirect:/login";
-        boolean success = loanService.finishLoan(form.getBookName(), form.getUserUsername());
+        boolean success = loanService.finishLoan(form.getName(), form.getUsername());
         if(!success) return "redirect:/login";
 
-        return "loans";
+        return "redirect:/loans";
     }
 }

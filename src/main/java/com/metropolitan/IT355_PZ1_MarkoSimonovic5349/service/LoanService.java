@@ -52,7 +52,10 @@ public class LoanService {
                 .findFirst();
 
         if(loanOpt.isPresent() && bookOpt.isPresent()){
-            loanOpt.get().setReturnDate(LocalDate.now());
+
+            Loan loan = loanOpt.get();
+            loan.setReturnDate(LocalDate.now());
+            loan.setActive(false);
             bookOpt.get().setAvailable(true);
             return true;
         }
