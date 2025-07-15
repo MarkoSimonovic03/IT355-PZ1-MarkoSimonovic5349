@@ -18,15 +18,15 @@ public class RegisterController {
     }
 
     @GetMapping("/register")
-    public String prikaziFormu(Model model) {
+    public String showForm(Model model) {
         model.addAttribute("error", false);
         model.addAttribute("exist", false);
         return "register";
     }
 
     @PostMapping("/register")
-    public String registruj(@RequestParam String username,
-                            @RequestParam String password,
+    public String register(@RequestParam String username,
+                           @RequestParam String password,
                             Model model) {
 
         if (AppUtils.isNullOrEmpty(username) || AppUtils.isNullOrEmpty(password)) {

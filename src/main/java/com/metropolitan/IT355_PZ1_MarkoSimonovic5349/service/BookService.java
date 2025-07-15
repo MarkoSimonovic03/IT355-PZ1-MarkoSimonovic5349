@@ -20,8 +20,8 @@ public class BookService {
     }
 
     @PostConstruct
-    public void loadBooks(){
-        if(db.getBookList().isEmpty()){
+    public void loadBooks() {
+        if (db.getBookList().isEmpty()) {
             db.getBookList().add(new Book("The Catcher in the Rye", "A story about teenage rebellion", true, new Author("J.D.", "Salinger", "American writer known for this novel"), Category.FICTION));
             db.getBookList().add(new Book("A Brief History of Time", "Exploring time and the universe", true, new Author("Stephen", "Hawking", "Famous physicist and cosmologist"), Category.SCIENCE));
             db.getBookList().add(new Book("1984", "Dystopian novel about totalitarian regime", true, new Author("George", "Orwell", "British writer and journalist"), Category.FICTION));
@@ -35,11 +35,7 @@ public class BookService {
         }
     }
 
-    public List<Book> getAllBooks(){
+    public List<Book> getAllBooks() {
         return db.getBookList();
-    }
-
-    public Optional<Book> returnByName(String name){
-        return db.getBookList().stream().filter(b -> b.getName().equals(name)).findFirst();
     }
 }

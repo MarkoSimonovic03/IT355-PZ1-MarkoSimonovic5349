@@ -19,7 +19,7 @@ public class BookController {
     }
 
     @GetMapping
-    public String showBooks(Model model){
+    public String showBooks(Model model) {
         model.addAttribute("books", bookService.getAllBooks());
         model.addAttribute("isLogged", sessionUser.isLogged());
         model.addAttribute("sessionUser", sessionUser);

@@ -8,11 +8,11 @@ import org.springframework.web.context.annotation.SessionScope;
 public class SessionUser {
     private String username;
 
-    public boolean isLogged(){
+    public boolean isLogged() {
         return username != null;
     }
 
-    public void logout(){
+    public void logout() {
         username = null;
     }
 

@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class RootRedirectController {
-
     @GetMapping("/")
-    public String redirectToOglasi() {
+    public String redirectToBooks() {
         return "redirect:/books";
     }
 }

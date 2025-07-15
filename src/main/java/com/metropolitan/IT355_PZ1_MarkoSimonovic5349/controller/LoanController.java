@@ -15,14 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoanController {
-    private final BookService bookService;
-    private final UserService userService;
     private final LoanService loanService;
     private final SessionUser sessionUser;
 
-    public LoanController(BookService bookService, UserService userService, LoanService loanService, SessionUser sessionUser) {
-        this.bookService = bookService;
-        this.userService = userService;
+    public LoanController(LoanService loanService, SessionUser sessionUser) {
         this.loanService = loanService;
         this.sessionUser = sessionUser;
     }
@@ -40,7 +36,7 @@ public class LoanController {
     public String loanBook(@ModelAttribute LoanForm form, Model model) {
         if (!sessionUser.isLogged()) return "redirect:/login";
         boolean success = loanService.createLoan(form.getName(), form.getUsername());
-        if(!success) return "redirect:/login";
+        if (!success) return "redirect:/login";
 
         return "redirect:/loans";
     }
@@ -49,7 +45,7 @@ public class LoanController {
     public String returnBook(@ModelAttribute LoanForm form, Model model) {
         if (!sessionUser.isLogged()) return "redirect:/login";
         boolean success = loanService.finishLoan(form.getName(), form.getUsername());
-        if(!success) return "redirect:/login";
+        if (!success) return "redirect:/login";
 
         return "redirect:/loans";
     }

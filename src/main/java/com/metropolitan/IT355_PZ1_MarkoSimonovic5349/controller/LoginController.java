@@ -23,7 +23,7 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public String forma(Model model) {
+    public String form(Model model) {
         model.addAttribute("error", false);
         return "login";
     }
@@ -33,12 +33,11 @@ public class LoginController {
                         @RequestParam String password,
                         Model model) {
 
-
         Optional<User> userOpt = userService.login(username, password);
 
         if (userOpt.isPresent()) {
-            User u = userOpt.get();
-            sessionUser.setUsername(u.getUsername());
+            User user = userOpt.get();
+            sessionUser.setUsername(user.getUsername());
             return "redirect:/books";
         }
 

@@ -5,6 +5,7 @@ import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.model.Loan;
 import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.model.User;
 import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.repository.MemoryBase;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -17,11 +18,11 @@ public class LoanService {
         this.db = db;
     }
 
-    public List<Loan> getLoansByUsername(String username){
+    public List<Loan> getLoansByUsername(String username) {
         return db.getLoanList().stream().filter(l -> l.getUser().getUsername().equals(username)).toList();
     }
 
-    public boolean createLoan(String bookName, String userUsername){
+    public boolean createLoan(String bookName, String userUsername) {
         Optional<Book> bookOpt = db.getBookList().stream()
                 .filter(b -> b.getName().equals(bookName))
                 .findFirst();
@@ -42,7 +43,7 @@ public class LoanService {
         return false;
     }
 
-    public boolean finishLoan(String bookName, String userUsername){
+    public boolean finishLoan(String bookName, String userUsername) {
         Optional<Loan> loanOpt = db.getLoanList().stream()
                 .filter(l -> (l.getBook().getName().equals(bookName) && l.getUser().getUsername().equals(userUsername)))
                 .findFirst();
@@ -51,8 +52,7 @@ public class LoanService {
                 .filter(b -> b.getName().equals(bookName))
                 .findFirst();
 
-        if(loanOpt.isPresent() && bookOpt.isPresent()){
-
+        if (loanOpt.isPresent() && bookOpt.isPresent()) {
             Loan loan = loanOpt.get();
             loan.setReturnDate(LocalDate.now());
             loan.setActive(false);
