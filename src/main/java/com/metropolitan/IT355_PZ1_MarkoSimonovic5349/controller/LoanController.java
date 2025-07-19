@@ -2,15 +2,12 @@ package com.metropolitan.IT355_PZ1_MarkoSimonovic5349.controller;
 
 import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.model.LoanForm;
 import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.model.SessionUser;
-import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.service.BookService;
 import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.service.LoanService;
-import com.metropolitan.IT355_PZ1_MarkoSimonovic5349.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 
 
 @Controller
@@ -33,7 +30,7 @@ public class LoanController {
     }
 
     @PostMapping("/createLoan")
-    public String loanBook(@ModelAttribute LoanForm form, Model model) {
+    public String loanBook(@ModelAttribute LoanForm form) {
         if (!sessionUser.isLogged()) return "redirect:/login";
         boolean success = loanService.createLoan(form.getName(), form.getUsername());
         if (!success) return "redirect:/login";
@@ -42,9 +39,21 @@ public class LoanController {
     }
 
     @PostMapping("finishLoan")
-    public String returnBook(@ModelAttribute LoanForm form, Model model) {
+    public String finishLoan(@ModelAttribute LoanForm form) {
         if (!sessionUser.isLogged()) return "redirect:/login";
         boolean success = loanService.finishLoan(form.getName(), form.getUsername());
+        if (!success) return "redirect:/login";
+
+        return "redirect:/loans";
+    }
+
+    @PostMapping("deleteLoan")
+    public String deleteLoan(@ModelAttribute LoanForm form,
+                             @RequestParam LocalDate loanDate,
+                             @RequestParam LocalDate returnDate
+                             ) {
+        if (!sessionUser.isLogged()) return "redirect:/login";
+        boolean success = loanService.deleteLoan(form.getName(), form.getUsername(), loanDate, returnDate);
         if (!success) return "redirect:/login";
 
         return "redirect:/loans";

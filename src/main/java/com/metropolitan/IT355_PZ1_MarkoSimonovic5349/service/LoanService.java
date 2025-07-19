@@ -45,7 +45,7 @@ public class LoanService {
 
     public boolean finishLoan(String bookName, String userUsername) {
         Optional<Loan> loanOpt = db.getLoanList().stream()
-                .filter(l -> (l.getBook().getName().equals(bookName) && l.getUser().getUsername().equals(userUsername)))
+                .filter(l -> (l.getBook().getName().equals(bookName) && l.getUser().getUsername().equals(userUsername) && l.isActive()))
                 .findFirst();
 
         Optional<Book> bookOpt = db.getBookList().stream()
@@ -57,6 +57,24 @@ public class LoanService {
             loan.setReturnDate(LocalDate.now());
             loan.setActive(false);
             bookOpt.get().setAvailable(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean deleteLoan(String bookName, String userUsername, LocalDate loanDate, LocalDate returnDate) {
+        Optional<Loan> loanOpt = db.getLoanList().stream()
+                .filter(l -> (l.getBook().getName().equals(bookName)
+                        && l.getUser().getUsername().equals(userUsername)
+                        && l.getLoanDate().equals(loanDate)
+                        && l.getReturnDate().equals(returnDate)
+                        && !l.isActive()))
+                .findFirst();
+
+        if (loanOpt.isPresent()) {
+            Loan loan = loanOpt.get();
+            db.getLoanList().remove(loan);
             return true;
         }
 

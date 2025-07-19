@@ -47,7 +47,17 @@
                         <form th:action="@{/finishLoan}" method="post" class="mt-2">
                             <input type="hidden" name="name" th:value="${loan.book.name}">
                             <input type="hidden" name="username" th:value="${sessionUser.username}">
-                            <button type="submit" class="btn btn-danger">Return Book</button>
+                            <button type="submit" class="btn btn-warning">Return Book</button>
+                        </form>
+                    </div>
+
+                    <div th:if="${!loan.isActive}">
+                        <form th:action="@{/deleteLoan}" method="post" class="mt-2">
+                            <input type="hidden" name="name" th:value="${loan.book.name}">
+                            <input type="hidden" name="username" th:value="${sessionUser.username}">
+                            <input type="hidden" name="loanDate" th:value="${loan.loanDate}">
+                            <input type="hidden" name="returnDate" th:value="${loan.returnDate}">
+                            <button type="submit" class="btn btn-danger">Delete From History</button>
                         </form>
                     </div>
                 </div>
